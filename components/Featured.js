@@ -1,8 +1,11 @@
 import { fadeIn } from "@/utils/motion";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useContext } from "react";
+import { CartContext } from "./CartContext";
 
 export default function Featured({ product }) {
+	const { addProduct } = useContext(CartContext);
 	return (
 		<div className="p-10 bg-black flex-grow text-white flex items-center justify-center">
 			<div className="flex flex-col md:grid grid-cols-2 lg:grid-cols-3 gap-[40px] mt-[80px]">
@@ -14,14 +17,15 @@ export default function Featured({ product }) {
 				>
 					<div>
 						<h1>{product.title}</h1>
-						<p className="text-justify">
-							{product.description}
-						</p>
+						<p className="text-justify">{product.description}</p>
 						<div className="py-5 flex gap-5">
 							<Link href={"/products/" + product._id}>
 								<button className="btn-secondary">Read More</button>
 							</Link>
-							<button className="btn-primary">
+							<button
+								onClick={() => addProduct(product._id)}
+								className="btn-primary"
+							>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									viewBox="0 0 24 24"
@@ -53,10 +57,7 @@ export default function Featured({ product }) {
 					whileInView="show"
 					className="lg:col-span-2"
 				>
-					<img
-						src={product.images[0]}
-						alt=""
-					/>
+					<img src={product.images[0]} alt="" />
 				</motion.div>
 			</div>
 		</div>
