@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { slideIn } from "@/utils/motion";
+import CartIcon from "./CartIcon";
+import { CartContext } from "./CartContext";
 
 export default function Header({ categories }) {
 	const inactiveLink =
@@ -12,22 +14,20 @@ export default function Header({ categories }) {
 		"decoration-white"
 	);
 
-	console.log(categories);
-
 	const [navOpen, setNavOpen] = useState(false);
 	const [isHovered, setIsHovered] = useState(false);
+
+	const { cartProducts } = useContext(CartContext);
 
 	const router = useRouter();
 	const { pathname } = router;
 	return (
 		<>
 			<header className="fixed top-0 w-full hidden sm:flex justify-around h-[80px] items-center bg-secondary text-white z-2">
-				<Link className={inactiveLink} href={"/"}>
+				<Link id="ecommerce" className={inactiveLink} href={"/"}>
 					Ecommerce
 				</Link>
-				<nav
-					className="flex gap-10"
-				>
+				<nav className="flex gap-10">
 					<Link
 						onMouseEnter={() => setIsHovered(false)}
 						className={`${pathname === "/" ? activeLink : inactiveLink}`}
@@ -104,22 +104,9 @@ export default function Header({ categories }) {
 					</Link>
 					<Link href={"/cart"} className="group">
 						<div className="flex items-center h-[60px] relative transition delay-150 duration-300 group-hover:text-primary">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
-								strokeWidth={1.5}
-								stroke="currentColor"
-								className="size-7"
-							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
-								/>
-							</svg>
+							<CartIcon className="size-7" />
 							<div className="absolute top-2 left-4 bg-secondary text-white border-2 border-white rounded-full items-center justify-center flex size-5 text-xs transition delay-150 duration-300 group-hover:text-primary group-hover:border-primary">
-								0
+								{cartProducts.length}
 							</div>
 						</div>
 					</Link>
@@ -147,22 +134,9 @@ export default function Header({ categories }) {
 				<Link href={"/"}>Ecommerce</Link>
 				<Link href={"/cart"} className="group">
 					<div className="flex items-center h-[60px] relative transition delay-150 duration-300 group-hover:text-primary">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-							strokeWidth={1.5}
-							stroke="currentColor"
-							className="size-7"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
-							/>
-						</svg>
+						<CartIcon className="size-7" />
 						<div className="absolute top-2 left-4 bg-secondary text-white border-2 border-white rounded-full items-center justify-center flex size-5 text-xs transition delay-150 duration-300 group-hover:text-primary group-hover:border-primary">
-							0
+							{cartProducts.length}
 						</div>
 					</div>
 				</Link>
