@@ -5,6 +5,8 @@ export default async function handle(req, res) {
 	await mongooseConnect();
 
 	if (req.method === "GET") {
-		res.json(await Category.find());
+		const categories = await Category.find();
+		categories.sort((a, b) => a.name.localeCompare(b.name));
+		res.json(categories);
 	}
 }

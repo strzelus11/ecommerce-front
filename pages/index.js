@@ -25,7 +25,8 @@ export async function getServerSideProps() {
 		sort: { _id: -1 },
 		limit: 10,
 	});
-	const categories = await Category.find({}, null, { sort: { _id: -1 } });
+    const categories = await Category.find();
+    categories.sort((a, b) => a.name.localeCompare(b.name));
 	return {
 		props: {
 			featuredProduct: JSON.parse(JSON.stringify(featuredProduct)),

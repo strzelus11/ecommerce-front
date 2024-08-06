@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useContext } from "react";
 import { CartContext } from "./CartContext";
-import CartIcon from "./CartIcon";
+import CartIcon from "./icons/CartIcon";
 
 export default function ProductDiv({ _id, title, images, price, index }) {
 	const { addProduct } = useContext(CartContext);
@@ -21,8 +21,8 @@ export default function ProductDiv({ _id, title, images, price, index }) {
 			variants={fadeIn("down", "spring", 0.1 * index, 1)}
 			initial="hidden"
 			whileInView="show"
-            className="box"
-            id={index}
+			className="box"
+			id={index}
 		>
 			<div className="bg-white h-[200px] p-3 mb-2 rounded-lg flex justify-center items-center">
 				<Link href={"/products/" + _id}>

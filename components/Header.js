@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { slideIn } from "@/utils/motion";
-import CartIcon from "./CartIcon";
+import CartIcon from "./icons/CartIcon";
 import { CartContext } from "./CartContext";
 
 export default function Header({ categories }) {
@@ -23,7 +23,7 @@ export default function Header({ categories }) {
 	const { pathname } = router;
 	return (
 		<>
-			<header className="fixed top-0 w-full hidden sm:flex justify-around h-[80px] items-center bg-secondary text-white z-2">
+			<header className="fixed top-0 w-full hidden sm:flex justify-around h-[80px] items-center bg-secondary text-white z-[2]">
 				<Link id="ecommerce" className={inactiveLink} href={"/"}>
 					Ecommerce
 				</Link>

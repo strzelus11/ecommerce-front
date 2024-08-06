@@ -78,7 +78,9 @@ export const fadeIn = (direction, type, delay, duration) => ({
 			type,
 			delay,
 			duration,
-			ease: "easeOut",
+            ease: "easeOut",
+            damping: 30,
+            stiffness: 300
 		},
 	},
 	exit: {

@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/utils/motion";
 import UserForm from "@/components/UserForm";
+import Link from "next/link";
 
 function checkMobile() {
 	if (typeof window !== "undefined") {
@@ -15,8 +16,9 @@ function checkMobile() {
 }
 
 export default function CartPage() {
-	const { cartProducts } = useContext(CartContext);
+	const { cartProducts, clearCart } = useContext(CartContext);
 	const [products, setProducts] = useState([]);
+	const [isSuccess, setIsSuccess] = useState(false);
 
 	const [isMobile, setIsMobile] = useState(checkMobile());
 
@@ -30,7 +32,7 @@ export default function CartPage() {
 		return () => {
 			window.removeEventListener("resize", handleResize);
 		};
-	});
+	}, []);
 
 	useEffect(() => {
 		if (cartProducts.length > 0) {
@@ -41,6 +43,32 @@ export default function CartPage() {
 			setProducts([]);
 		}
 	}, [cartProducts]);
+
+	useEffect(() => {
+		if (typeof window === "undefined") {
+			return;
+		}
+		if (window?.location.href.includes("success")) {
+			setIsSuccess(true);
+			clearCart();
+		}
+	}, []);
+
+	if (isSuccess) {
+		return (
+			<Layout>
+				<div className="p-10 flex flex-col justify-center items-center sm:mt-[80px]">
+					<h2 className="text-center">Your payment was successful!</h2>
+					<p>Please check your email for details.</p>
+					<Link href="/" className="mt-5">
+						<button onClick={() => clearCart()} className="btn-outline">
+							Go back to shopping
+						</button>
+					</Link>
+				</div>
+			</Layout>
+		);
+	}
 
 	return (
 		<Layout>
