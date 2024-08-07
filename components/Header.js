@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { slideIn } from "@/utils/motion";
 import CartIcon from "./icons/CartIcon";
 import { CartContext } from "./CartContext";
+import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 export default function Header({ categories }) {
 	const inactiveLink =
@@ -20,7 +22,9 @@ export default function Header({ categories }) {
 	const { cartProducts } = useContext(CartContext);
 
 	const router = useRouter();
-	const { pathname } = router;
+	const pathname = usePathname();
+	const session = useSession();
+
 	return (
 		<>
 			<header className="fixed top-0 w-full hidden sm:flex justify-around h-[80px] items-center bg-secondary text-white z-[2]">
@@ -80,7 +84,8 @@ export default function Header({ categories }) {
 						)}
 					</AnimatePresence>
 				</nav>
-				<nav className="flex gap-10 items-center">
+                <nav className="flex gap-10 items-center">
+                    <div>{session?.data?.user.email}</div>
 					<Link
 						href={"/account/profile"}
 						className={`transition delay-150 duration-300 hover:text-primary ${

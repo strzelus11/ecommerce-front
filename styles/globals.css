@@ -106,6 +106,10 @@ select {
 	@apply border-2 border-gray-200 rounded-md p-2 focus:outline-none focus:border-primary mb-1 w-full shadow-md;
 }
 
+label {
+	@apply text-sm text-gray-500;
+}
+
 .box-height {
-	height: calc(100vh - 120px);
+	min-height: calc(100vh - 120px);
 }

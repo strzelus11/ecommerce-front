@@ -1,7 +1,9 @@
 import axios from "axios";
+import { usePathname } from "next/navigation";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import EditableImage from "./EditableImage";
 
 export default function UserForm({ user, onSubmit, cartProducts }) {
 	const [userName, setUserName] = useState(user?.name || "");
@@ -14,7 +16,7 @@ export default function UserForm({ user, onSubmit, cartProducts }) {
 	const [country, setCountry] = useState(user?.country || "");
 
 	const router = useRouter();
-	const { pathname } = router;
+	const pathname = usePathname();
 
 	async function goToPayment() {
 		if (cartProducts.length > 0) {
@@ -26,13 +28,13 @@ export default function UserForm({ user, onSubmit, cartProducts }) {
 				streetAddress,
 				country,
 				cartProducts,
-            });
-            if (response.data.url) {
-                window.location = response.data.url;
-            }
-        } else {
-            toast.error("No items in cart.")
-        }
+			});
+			if (response.data.url) {
+				window.location = response.data.url;
+			}
+		} else {
+			toast.error("No items in cart.");
+		}
 	}
 
 	return (
@@ -53,7 +55,9 @@ export default function UserForm({ user, onSubmit, cartProducts }) {
 			}`}
 		>
 			<div className="flex justify-center">
-				{pathname.includes("account") && <img src="" alt="" />}
+				{pathname.includes("account") && (
+					<EditableImage image={image} setImage={setImage} />
+				)}
 			</div>
 			<div>
 				<label>Name:</label>
