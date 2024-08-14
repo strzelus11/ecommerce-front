@@ -7,7 +7,7 @@ import { fadeIn } from "@/utils/motion";
 import { motion } from "framer-motion";
 
 export default function ProductPage({ product, category }) {
-    console.log(product.properties)
+	console.log(product);
 	return (
 		<Layout>
 			<div className="flex justify-center">
@@ -28,14 +28,18 @@ export default function ProductPage({ product, category }) {
 					>
 						<h2>{product.title}</h2>
 						<h3 className="text-gray-500">{category.name}</h3>
-                        <div className="flex gap-5 my-5">
-                            {Object.entries(product.properties).map(([name, value]) => (
-                                <div key={name} className="bg-white p-2 rounded-md flex gap-2 items-center shadow-md">
-                                    <div className="whitespace-nowrap capitalize">{name}:</div>
-                                    <div className="capitalize">{value}</div>
-                                </div>
-                            ))}
-                        </div>
+						<div className="flex gap-5 my-5">
+							{product.properties &&
+								Object.entries(product.properties).map(([name, value]) => (
+									<div
+										key={name}
+										className="bg-white p-2 rounded-md flex gap-2 items-center shadow-md"
+									>
+										<div className="whitespace-nowrap capitalize">{name}:</div>
+										<div className="capitalize">{value}</div>
+									</div>
+								))}
+						</div>
 						<div className="flex gap-5 items-center mt-5">
 							<h2 className="mb-0">${product.price}</h2>
 							<button className="btn-primary">
@@ -52,8 +56,8 @@ export default function ProductPage({ product, category }) {
 										strokeLinejoin="round"
 										d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
 									/>
-                                </svg>
-                                Add to Cart
+								</svg>
+								Add to Cart
 							</button>
 						</div>
 					</motion.div>

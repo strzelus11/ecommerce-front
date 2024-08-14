@@ -2,17 +2,17 @@ import Link from "next/link";
 
 export default function AuthButton() {
 	return (
-		<div className="flex flex-col justify-center items-center px-5 py-3">
-			<h3 className="text-center whitespace-nowrap mb-3">
+		<div className="flex flex-col justify-center items-center">
+			<p className="text-center whitespace-nowrap mb-3 font-medium">
 				You're not authenticated
-			</h3>
-			<div className="flex gap-3">
-				<Link href="/login">
-					<button className="btn-primary">Login</button>
-				</Link>
-				<Link href="/register">
-					<button className="btn-secondary">Register</button>
-				</Link>
+			</p>
+			<div className="flex flex-col items-center gap-3 w-full">
+				<button className="btn-primary w-full flex justify-center">
+					<Link href="/login">Login</Link>
+				</button>
+				<button className="btn-secondary w-full  flex justify-center">
+					<Link href="/register">Register</Link>
+				</button>
 			</div>
 		</div>
 	);

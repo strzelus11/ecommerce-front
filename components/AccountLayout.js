@@ -7,8 +7,11 @@ import WishlistIcon from "./icons/WishlistIcon";
 
 import { motion } from "framer-motion";
 import { fadeIn } from "@/utils/motion";
+import { useSession } from "next-auth/react";
+import AuthButton from "./AuthButton";
 
 export default function AccountLayout({ children, title }) {
+	const session = useSession();
 	return (
 		<Layout>
 			<div className="p-5 w-full h-full">
@@ -34,7 +37,11 @@ export default function AccountLayout({ children, title }) {
 							initial="hidden"
 							whileInView="show"
 						>
-							{children}
+							{session?.status === "authenticated" ? (
+								<>{children}</>
+							) : (
+								<AuthButton />
+							)}
 						</motion.div>
 					</div>
 				</div>

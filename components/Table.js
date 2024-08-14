@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CartContext } from "./CartContext";
+import { CartContext } from "./hooks/CartContext";
 import Link from "next/link";
 
 export default function Table({ products, cartProducts }) {

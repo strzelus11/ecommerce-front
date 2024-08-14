@@ -26,7 +26,7 @@ export default async function handle(req, res) {
 		const email = session.user.email;
 		const { name, image, ...userInfo } = req.body;
 
-		await User.updateOne({ email }, name, image);
+		await User.updateOne({ email }, { name, image });
 		await UserInfo.updateOne({ email }, userInfo, { upsert: true });
 
 		return res.json(true);

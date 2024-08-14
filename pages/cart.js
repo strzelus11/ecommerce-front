@@ -1,4 +1,4 @@
-import { CartContext } from "@/components/CartContext";
+import { CartContext } from "@/components/hooks/CartContext";
 import Layout from "@/components/Layout";
 import Table from "@/components/Table";
 import axios from "axios";

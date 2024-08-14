@@ -1,6 +1,8 @@
 import ProductDiv from "./ProductDiv";
+import useWishlist from "./hooks/useWishlist";
 
 export default function NewProducts({ products }) {
+	const { wishlist, setWishlist, loading } = useWishlist();
 	return (
 		<div
 			id="Products"
@@ -12,7 +14,13 @@ export default function NewProducts({ products }) {
 			<div className="flex flex-col sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
 				{products?.length > 0 &&
 					products.map((product, index) => (
-						<ProductDiv key={product._id} index={index} {...product} />
+						<ProductDiv
+							key={product._id}
+							index={index}
+							{...product}
+							wishlist={wishlist}
+							setWishlist={setWishlist}
+						/>
 					))}
 			</div>
 		</div>
