@@ -7,10 +7,10 @@ export default function AuthButton() {
 				You're not authenticated
 			</p>
 			<div className="flex flex-col items-center gap-3 w-full">
-				<button className="btn-primary w-full flex justify-center">
+				<button className="btn-primary hover:scale-100 hover:bg-opacity-90 w-full flex justify-center">
 					<Link href="/login">Login</Link>
 				</button>
-				<button className="btn-secondary w-full  flex justify-center">
+				<button className="btn-secondary hover:scale-100 hover:bg-opacity-90 w-full  flex justify-center">
 					<Link href="/register">Register</Link>
 				</button>
 			</div>

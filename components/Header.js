@@ -7,9 +7,10 @@ import CartIcon from "./icons/CartIcon";
 import { CartContext } from "./hooks/CartContext";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
-import useImage from "./hooks/useImage";
+
 import UserIcon from "./icons/UserIcon";
 import AuthButton from "./AuthButton";
+import { useImage } from "./hooks/useImage";
 
 export default function Header({ categories }) {
 	const inactiveLink =
@@ -25,10 +26,11 @@ export default function Header({ categories }) {
 
 	const { cartProducts } = useContext(CartContext);
 
-	const router = useRouter();
 	const pathname = usePathname();
 	const session = useSession();
-	const { userImage, loading } = useImage();
+    const { userImage, loading } = useImage();
+    
+    console.log(session)
 
 	return (
 		<>

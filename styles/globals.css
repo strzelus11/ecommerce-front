@@ -113,3 +113,15 @@ label {
 .box-height {
 	min-height: calc(100vh - 120px);
 }
+
+.orders {
+	@apply w-full mt-5 shadow-md rounded-lg bg-white;
+}
+
+.orders thead tr td {
+	@apply text-sm uppercase border-b-2 border-gray-300;
+}
+
+.orders tr td {
+	@apply p-2;
+}

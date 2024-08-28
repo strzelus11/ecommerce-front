@@ -4,7 +4,7 @@ import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
 export default function SettingsPage() {
-    const session = useSession();
+	const session = useSession();
 	return (
 		<AccountLayout title="Settings">
 			{session?.status === "authenticated" ? (

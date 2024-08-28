@@ -2,11 +2,13 @@ import { CartContextProvider } from "@/components/hooks/CartContext";
 import "@/styles/globals.css";
 import { Toaster } from "react-hot-toast";
 import { SessionProvider } from "next-auth/react";
+import { ImageProvider } from "@/components/hooks/useImage";
 
 export default function App({ Component, pageProps }) {
 	return (
 		<SessionProvider>
 			<CartContextProvider>
+				<ImageProvider>
 					<Toaster
 						position="top-center"
 						reverseOrder={false}
@@ -24,6 +26,7 @@ export default function App({ Component, pageProps }) {
 						}}
 					/>
 					<Component {...pageProps} />
+				</ImageProvider>
 			</CartContextProvider>
 		</SessionProvider>
 	);

@@ -3,12 +3,9 @@ import Spinner from "@/components/Spinner";
 import UserForm from "@/components/UserForm";
 import { useImage } from "@/components/hooks/useImage";
 import useProfile from "@/components/hooks/useProfile";
-import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 
 export default function ProfilePage() {
-	const session = useSession();
-
 	const { setUserImage } = useImage();
 	const { user, loading } = useProfile();
 

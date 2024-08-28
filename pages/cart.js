@@ -7,6 +7,8 @@ import { motion } from "framer-motion";
 import { fadeIn } from "@/utils/motion";
 import UserForm from "@/components/UserForm";
 import Link from "next/link";
+import useProfile from "@/components/hooks/useProfile";
+import Spinner from "@/components/Spinner";
 
 function checkMobile() {
 	if (typeof window !== "undefined") {
@@ -17,6 +19,8 @@ function checkMobile() {
 
 export default function CartPage() {
 	const { cartProducts, clearCart } = useContext(CartContext);
+	const { user, loading } = useProfile();
+
 	const [products, setProducts] = useState([]);
 	const [isSuccess, setIsSuccess] = useState(false);
 
@@ -95,9 +99,13 @@ export default function CartPage() {
 						className="box p-5 sticky top-[120px]"
 					>
 						<h3>Order information</h3>
-						<div>
-							<UserForm cartProducts={cartProducts} />
-						</div>
+						{loading ? (
+							<Spinner />
+						) : (
+							<div className="w-full">
+								<UserForm user={user} cartProducts={cartProducts} />
+							</div>
+						)}
 					</motion.div>
 				</div>
 			</div>
